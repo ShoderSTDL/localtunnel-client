@@ -1,5 +1,6 @@
-import shutil
+from modules import scripts
 import launch
+import shutil
 import sys
 import subprocess
 import os
@@ -25,3 +26,13 @@ if node_path is None:
 
     else:
         print("To use localtunnel, Node.js version 14 or higher must be installed")
+
+npm_executable = "npm"
+npm_path = shutil.which(npm_executable)
+
+if npm_path is not None:
+    file_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
+    try:
+        subprocess.run('npm install', shell=True, check=True, cwd=file_dir)
+    except subprocess.CalledProcessError as e:
+        raise (f'Error: An error occurred while installing the module.',e)
