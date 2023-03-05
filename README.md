@@ -5,7 +5,8 @@ https://user-images.githubusercontent.com/75435724/222434466-fae03e4a-aa8a-4a97-
 
 ## Changelog
 
- * 2023-03-05: Fixed the issue where some servers were unable to run in the background. To properly install additional modules using npm, run webui.sh or launch.py.  
+ * 2023-03-05: Fixed issue with background on some servers causing execution problem.  
+To properly install additional modules using npm, run webui.sh or launch.py.  
  Do not directly run webui.py as it skips the installation process.
 
 ## Requirements
