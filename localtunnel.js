@@ -28,7 +28,7 @@ app.stdout.on('data', (data) => {
     throw `Failed to start localtunnel: ${host}`
   }
 
-  const url = str.at(1).trim();
+  const url = str[1].trim();
   const info = {
     "pid":app.pid,
     "url":url,

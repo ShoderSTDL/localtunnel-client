@@ -6,8 +6,8 @@ https://user-images.githubusercontent.com/75435724/222434466-fae03e4a-aa8a-4a97-
 ## Changelog
 
  * 2023-03-05: Fixed issue with background on some servers causing execution problem.  
-To properly install additional modules using npm, run webui.sh or launch.py.  
- Do not directly run webui.py as it skips the installation process.
+To properly install additional modules using npm, run `webui.sh` or `launch.py`.  
+ Do not directly run `webui.py` as it skips the installation process.
 
 ## Requirements
 
@@ -19,7 +19,7 @@ If you are using a virtual environment, such as virtualenv for Python, Node.js w
 
 ## Installation and Usage
 
-To use this extension, follow these steps:
+Follow these steps:
 
 1. Go to the "Extensions" tab in the webui
 2. Click on the "Install from URL" tab
