@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "minimist": "^1.2.8",
-    "which": "^3.0.0"
+    "localtunnel": "^2.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
