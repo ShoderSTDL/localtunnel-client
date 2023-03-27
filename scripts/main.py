@@ -24,10 +24,15 @@ if cmd_opts.localtunnel:
     stdout, stderr = process.communicate()
 
     if process.returncode is not None and process.returncode == 0:
-        output_dict = json.loads(stdout)
+        data = stdout.decode("utf-8")
+        json_string = re.search(r'\{.*\}', data).group()
+
+        output_dict = json.loads(json_string)
         pid = output_dict["pid"]
+        version = output_dict["version"]
         connected_url = output_dict["url"]
 
+        print(f"localtunnel-{version}")
         print(f"localtunnel connected to {host}")
         print(f"localtunnel is running at {connected_url}")
     else:

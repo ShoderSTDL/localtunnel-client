@@ -1,7 +1,7 @@
 {
   "name": "webui-localtunnel-client",
   "description": "https://github.com/localtunnel/localtunnel for [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "localtunnel.js",
   "author": {
     "name": "jnyfil",
@@ -9,7 +9,8 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=14.21.3"
+    "node": ">=14.21.3",
+    "pnpm": ">=7.30.0"
   },
   "dependencies": {
     "minimist": "^1.2.8",

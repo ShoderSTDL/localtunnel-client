@@ -1,11 +1,27 @@
-const {spawn} = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 const path = require('path');
 
 const args = require('minimist')(process.argv.slice(2));
 const lt_path = path.join(__dirname, "node_modules/localtunnel/bin/lt.js");
-const app = spawn('node', ['--experimental-modules', lt_path, "--port" ,args.port, "--host", args.host], {
+
+// This code is not merely for checking the version
+// In the case of Colab, the initial loading can be very slow, causing timeout issues
+// Therefore, a warm-up is necessary to load localtunnel beforehand
+const preload = spawnSync('node', ['--experimental-modules', lt_path, "--version"]);
+if (preload.error) {
+  console.error(`localtunnel version check error: ${preload.error}`);
+}
+else if (preload.status !== 0) {
+  console.error(`localtunnel failed with code ${preload.status}, message: ${preload.stderr.toString()}`);
+}
+else {
+  console.info(`localtunnel version: ${preload.stdout.toString()}`);
+}
+
+
+const app = spawn('node', ['--experimental-modules', lt_path, "--port", args.port, "--host", args.host], {
   detached: false,
-  stdio:'pipe',
+  stdio: 'pipe',
 });
 
 const timeout = setTimeout(() => {
@@ -13,7 +29,7 @@ const timeout = setTimeout(() => {
   app.kill(9);
 }, 5000);
 
-app.on("exit",(code,signal)=>{
+app.on("exit", (code, signal) => {
   if (code === 0 || signal === 'SIGINT') {
     if (!app.killed) app.kill(signal);
     return;
@@ -30,8 +46,9 @@ app.stdout.on('data', (data) => {
 
   const url = str[1].trim();
   const info = {
-    "pid":app.pid,
-    "url":url,
+    "pid": app.pid,
+    "url": url,
+    "version" : preload.stdout.toString().trim()
   }
   console.info(JSON.stringify(info));
 
