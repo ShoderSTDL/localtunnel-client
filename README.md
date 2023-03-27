@@ -5,11 +5,9 @@ https://user-images.githubusercontent.com/75435724/222434466-fae03e4a-aa8a-4a97-
 
 ## Changelog
 
- * 2023-03-27: Added localtunnel warm-up process. In some cases, such as on colab, the initial loading can be very slow, causing timeout issues. Therefore, it is necessary to load localtunnel beforehand by warming it up.
+ * 2023-03-28: Moved installation process to main.py for users running `webui.py` directly
 
- * 2023-03-05: Fixed issue with background on some servers causing execution problem.  
-To properly install additional modules using npm, run `webui.sh` or `launch.py`.  
- Do not directly run `webui.py` as it skips the installation process.
+ * 2023-03-27: Added localtunnel warm-up process. In some cases, such as on colab, the initial loading can be very slow, causing timeout issues. Therefore, it is necessary to load localtunnel beforehand by warming it up.
 
 ## Requirements
 
