@@ -2,7 +2,7 @@ const {spawn} = require('child_process');
 const path = require('path');
 
 const args = require('minimist')(process.argv.slice(2));
-const lt_path = path.join(__dirname, "node_modules/.bin/lt");
+const lt_path = path.join(__dirname, "node_modules/localtunnel/bin/lt.js");
 const app = spawn('node', ['--experimental-modules', lt_path, "--port" ,args.port, "--host", args.host], {
   detached: false,
   stdio:'pipe',

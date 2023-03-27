@@ -33,6 +33,6 @@ npm_path = shutil.which(npm_executable)
 if npm_path is not None:
     file_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
     try:
-        subprocess.run('npm install', shell=True, check=True, cwd=file_dir)
+        subprocess.run('npx pnpm install', shell=True, check=True, cwd=file_dir)
     except subprocess.CalledProcessError as e:
         raise (f'Error: An error occurred while installing the module.',e)
