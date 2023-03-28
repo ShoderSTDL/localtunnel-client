@@ -36,7 +36,7 @@ def install():
     if npm_path is not None:
         file_dir = scripts.basedir()
         try:
-            subprocess.run('npx pnpm install', shell=True, check=True, cwd=file_dir)
+            subprocess.run('npx pnpm@7.30.5 install', shell=True, check=True, cwd=file_dir)
         except subprocess.CalledProcessError as e:
             raise (f'Error: An error occurred while installing the module.',e)
 
