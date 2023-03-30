@@ -1,7 +1,7 @@
 {
   "name": "webui-localtunnel-client",
   "description": "https://github.com/localtunnel/localtunnel for [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "localtunnel.js",
   "author": {
     "name": "jnyfil",
@@ -9,14 +9,18 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=14.16.0",
-    "pnpm": ">=7.30.5"
+    "node": ">=14.16.0"
   },
   "dependencies": {
-    "minimist": "^1.2.8",
-    "localtunnel": "^2.0.2"
+    "localtunnel": "^2.0.2",
+    "minimist": "^1.2.8"
+  },
+  "devDependencies": {
+    "node-dev": "8.0.0"
   },
   "scripts": {
+    "start": "node localtunnel.js --port 1234",
+    "dev": "node-dev localtunnel.js -- --port 7860 --host http://localhost:12345",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

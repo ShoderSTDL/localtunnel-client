@@ -19,7 +19,7 @@ else {
 }
 
 
-const app = spawn('node', ['--experimental-modules', lt_path, "--port", args.port, "--host", args.host], {
+const app = spawn('node', ['--experimental-modules', lt_path, "--port",Array.isArray(args.port) ? args.port[args.port.length-1] : args.port, "--host", args.host], {
   detached: false,
   stdio: 'pipe',
 });

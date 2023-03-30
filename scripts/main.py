@@ -9,17 +9,13 @@ import sys
 import launch
 
 def install():
-    node_version = "14.21.3"
-    node_executable = "node"
-    node_path = shutil.which(node_executable)
-    npm_executable = "npm"
-    npm_path = shutil.which(npm_executable)
 
-    if node_path is None:
+    if shutil.which("node") is None:
         if hasattr(sys, 'real_prefix') or (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
             if not launch.is_installed("nodeenv"):
                 launch.run_pip("install nodeenv", "requirements for localtunnel")
 
+            node_version =  "14.21.3" # v14 LTS
             cmd = ["nodeenv", "-p", "-n", node_version]
             subprocess.run(cmd)
 
@@ -33,10 +29,9 @@ def install():
         else:
             print("To use localtunnel, Node.js version 14 or higher must be installed")
 
-    if npm_path is not None:
-        file_dir = scripts.basedir()
+    if shutil.which("npm") is not None:
         try:
-            subprocess.run('npx pnpm@7.30.5 install', shell=True, check=True, cwd=file_dir)
+            subprocess.run('npm install', shell=True, check=True, cwd=scripts.basedir())
         except subprocess.CalledProcessError as e:
             raise (f'Error: An error occurred while installing the module.',e)
 
@@ -53,10 +48,8 @@ if cmd_opts.localtunnel:
     if is_valid_url(host) is False:
         raise ValueError("Invalid URL format for localtunnel host")
 
-    nodejs = os.path.join(scripts.basedir(),"localtunnel.js")
-
-    argv = ["node", nodejs, "--port", str(port), "--host", host]
-    process = subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    argv = ["npm","run", "start", "--", "--port", str(port), "--host", host]
+    process = subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=scripts.basedir())
 
     stdout, stderr = process.communicate()
 
