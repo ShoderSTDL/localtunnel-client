@@ -1,5 +1,6 @@
 from modules.shared import cmd_opts
 from modules import scripts
+from requests import get
 import subprocess
 import re
 import json
@@ -61,10 +62,12 @@ if cmd_opts.localtunnel:
         pid = output_dict["pid"]
         version = output_dict["version"]
         connected_url = output_dict["url"]
+        own_ip = get('https://ipv4.icanhazip.com/').content.decode('utf8')
 
         print(f"localtunnel-{version}")
         print(f"localtunnel connected to {host}")
         print(f"localtunnel is running at {connected_url}")
+        print(f"Input this in Endpoint IP: {own_ip}")
     else:
         process.terminate()
         error_message = stderr.decode().strip()
